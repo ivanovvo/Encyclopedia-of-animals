@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     public static String resul = "noo";
 
     public static String testUrl;
-    public static  String SERVER_URL = "http://192.168.56.1:8080/user/login";
+    public static  String SERVER_URL = "http://localhost:8080/user/login";
 
     public void setUrl(String url) {
         testUrl = url;
@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... urls) {
+                System.out.println("0");
             String log = login.getText().toString();
             String passwrd = password.getText().toString();
             ///////////////////////////////
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                     resul = (Objects.requireNonNull(response.body()).string());
                      System.out.println("5");
                     if (!resul.equalsIgnoreCase("logged")) {
+                             System.out.println("6");
                         resul = "no";
                     }
                     System.out.println(resul+"           9999");
@@ -93,8 +95,9 @@ public class MainActivity extends AppCompatActivity {
                         AlertDialog.Builder a_builder = new AlertDialog.Builder(MainActivity.this);
 
                         if(!testUrl.equals("")) {
+                                System.out.println(testUrl + "   1");
                             new ServTask().execute(testUrl);
-                        }else{
+                        }else{    System.out.println(SERVER_URL + "    1");
                             new ServTask().execute(SERVER_URL);
                         }
                         try {
